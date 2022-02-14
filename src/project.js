@@ -14,3 +14,5 @@ const project = (name) => {
 
     return {getName, getTasks, renameName}
 };
+
+export default project;

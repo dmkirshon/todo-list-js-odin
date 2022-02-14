@@ -15,7 +15,7 @@ const todoController = (() => {
     const createNewProject = (name) => {
         const newProject = project(name);
         projects.push(newProject);
-    }
+    };
 
     const createNewTask = (title) => {
         const newTask = task(title);

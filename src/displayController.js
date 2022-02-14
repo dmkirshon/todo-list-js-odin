@@ -9,7 +9,7 @@ const displayController = (() => {
         console.log(todoController.getTasksFromProject(selectedProject));
     };
     const displayProjects = () => {
-        console.log(todoController.getProjects());
+        return todoController.getProjects();
     };
 
     const captureNewTask = (title) => {
