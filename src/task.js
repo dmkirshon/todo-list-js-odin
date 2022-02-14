@@ -14,14 +14,14 @@ const task = (title) => {
     const getStatus = () => status;
     const getPriority = () => priority;
 
-    const setTitle = (newTitle) => title = newTitle;
-    const setDescription = (newDescription) => description = newDescription;
-    const setDueDate = (newDueDate) => dueDate = newDueDate;
-    const setStatus = (newStatus) => status = newStatus;
-    const setPriority = (newPriority) => priority = newPriority;
+    const renameTitle = (newTitle) => title = newTitle;
+    const editDescription = (newDescription) => description = newDescription;
+    const changeDueDate = (newDueDate) => dueDate = newDueDate;
+    const changeStatus = (newStatus) => status = newStatus;
+    const changePriority = (newPriority) => priority = newPriority;
 
     return {getTitle, getDescription, getDueDate, getStatus, getPriority,
-    setTitle, setDescription, setDueDate, setStatus, setPriority};
+    renameTitle, editDescription, changeDueDate, changeStatus, changePriority};
 }
 
 export default task;
