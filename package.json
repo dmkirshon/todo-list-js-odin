@@ -1,0 +1,27 @@
+{
+  "name": "todo-list-js-odin",
+  "version": "1.0.0",
+  "description": "## Summary: This project is a basic restaurant homepage using DOM manipulation and webpack.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --progress --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmkirshon/todo-list-js-odin.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dmkirshon/todo-list-js-odin/issues"
+  },
+  "homepage": "https://github.com/dmkirshon/todo-list-js-odin#readme",
+  "devDependencies": {
+    "css-loader": "^6.6.0",
+    "html-webpack-plugin": "^5.5.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.2"
+  }
+}
