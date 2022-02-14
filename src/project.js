@@ -1,13 +1,16 @@
 /**
  * Description: Project object that contains instantiated tasks.
  */
-const project = (title) => {
+const project = (name) => {
     const containedTasks = [];
 
-    const getTitle = () => title;
+    const getName = () => name;
     const getContainedTasks = () => containedTasks;
 
-    const renameTitle = (newTitle) => title = newTitle;
+    const renameName = (newName) => {name = newName};
+    const addTask = (newTask) => {
+        containedTasks.push(newTask);
+    };
 
-    return {getTitle, getContainedTasks, renameTitle}
+    return {getName, getContainedTasks, renameName}
 };
