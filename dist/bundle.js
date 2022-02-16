@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _displayController__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./displayController */ \"./src/displayController.js\");\n\n\nwindow.dc = _displayController__WEBPACK_IMPORTED_MODULE_0__[\"default\"];\nconsole.log(dc);\n\n//# sourceURL=webpack://todo-list-js-odin/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _displayController__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./displayController */ \"./src/displayController.js\");\n\n\nconst content = document.createElement('div');\n\nfunction createHeader() {\n    const header = document.createElement('header');\n    const projectsListLabel = document.createElement('label');\n    const projectsListDropDown = document.createElement('select');\n\n    projectsListLabel.setAttribute('for', 'projects');\n    projectsListDropDown.setAttribute('id', 'projects');\n    projectsListDropDown.setAttribute('name', 'projectsList');\n\n    _displayController__WEBPACK_IMPORTED_MODULE_0__[\"default\"].displayProjects().forEach(project => {\n        const listOption = document.createElement('option');\n        listOption.value = project.getName();\n        listOption.textContent = project.getName();\n        projectsListDropDown.appendChild(listOption);\n    });\n\n    header.appendChild(projectsListDropDown);\n\n    return header;\n};\n\ndocument.body.appendChild(content);\ncontent.appendChild(createHeader());\n\n//# sourceURL=webpack://todo-list-js-odin/./src/index.js?");
 
 /***/ }),
 
