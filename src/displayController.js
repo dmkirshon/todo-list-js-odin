@@ -8,8 +8,17 @@ const displayController = (() => {
     const displayTasks = (selectedProject) => {
         console.log(todoController.getTasksFromProject(selectedProject));
     };
-    const displayProjects = () => {
-        return todoController.getProjects();
+    const displayProjectsSelectOptions = () => {
+        const projectElementsList = [];
+
+        todoController.getProjects().forEach(project => {
+            const listOption = document.createElement('option');
+            listOption.value = project.getName();
+            listOption.textContent = project.getName();
+            projectElementsList.push(listOption);
+        });
+
+        return projectElementsList;
     };
 
     const captureNewTask = (title) => {
@@ -23,7 +32,7 @@ const displayController = (() => {
 
 
     return {
-        displayTasks, displayProjects, captureNewProject, captureNewTask,
+        displayTasks, displayProjectsSelectOptions, captureNewProject, captureNewTask,
     };
 })();
 

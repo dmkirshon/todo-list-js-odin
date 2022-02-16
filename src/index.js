@@ -6,19 +6,26 @@ function createHeader() {
     const header = document.createElement('header');
     const projectsListLabel = document.createElement('label');
     const projectsListDropDown = document.createElement('select');
+    const addProjectButton = document.createElement('button');
 
     projectsListLabel.setAttribute('for', 'projects');
     projectsListDropDown.setAttribute('id', 'projects');
     projectsListDropDown.setAttribute('name', 'projectsList');
 
-    displayController.displayProjects().forEach(project => {
-        const listOption = document.createElement('option');
-        listOption.value = project.getName();
-        listOption.textContent = project.getName();
-        projectsListDropDown.appendChild(listOption);
-    });
+    projectsListDropDown.replaceChildren(...displayController.displayProjectsSelectOptions());
+    
+    addProjectButton.textContent = '+';
+    addProjectButton.onclick = addProject;
+
+    function addProject() {
+       const newProjectName = prompt('What is the name of your new project?');
+       displayController.captureNewProject(newProjectName);
+       
+       projectsListDropDown.replaceChildren(...displayController.displayProjectsSelectOptions());
+    }
 
     header.appendChild(projectsListDropDown);
+    header.appendChild(addProjectButton);
 
     return header;
 };
