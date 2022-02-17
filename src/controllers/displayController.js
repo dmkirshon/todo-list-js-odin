@@ -1,5 +1,5 @@
 import todoController from './todoController';
-import header from '../components/header';
+import header from '../layouts/header';
 
 /**
  * Description: Display Controller object that can display out to the console.
@@ -20,7 +20,7 @@ const displayController = (() => {
         const settingsDiv = document.createElement('div');
 
         const newHeaderView = header();
-        
+
         projectViewDiv.appendChild(newHeaderView.createProjectSelector());
         projectViewDiv.appendChild(newHeaderView.createAddProjectButton());
         settingsDiv.appendChild(newHeaderView.createSettingsButton());
