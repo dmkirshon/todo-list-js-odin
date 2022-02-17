@@ -10,13 +10,53 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/displayController.js":
+/***/ "./src/components/header.js":
 /*!**********************************!*\
-  !*** ./src/displayController.js ***!
+  !*** ./src/components/header.js ***!
   \**********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _todoController__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todoController */ \"./src/todoController.js\");\n\n\n/**\n * Description: Display Controller object that can display out to the console.\n */\nconst displayController = (() => {\n\n    const displayTasks = (selectedProject) => {\n        console.log(_todoController__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getTasksFromProject(selectedProject));\n    };\n    const displayProjectsSelectOptions = () => {\n        const projectElementsList = [];\n\n        _todoController__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getProjects().forEach(project => {\n            const listOption = document.createElement('option');\n            listOption.value = project.getName();\n            listOption.textContent = project.getName();\n            projectElementsList.push(listOption);\n        });\n\n        return projectElementsList;\n    };\n\n    const captureNewTask = (title) => {\n        _todoController__WEBPACK_IMPORTED_MODULE_0__[\"default\"].createNewTask(title);\n    };\n\n    const captureNewProject = (name) => {\n        _todoController__WEBPACK_IMPORTED_MODULE_0__[\"default\"].createNewProject(name);\n    };\n\n\n\n    return {\n        displayTasks, displayProjectsSelectOptions, captureNewProject, captureNewTask,\n    };\n})();\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displayController);\n\n//# sourceURL=webpack://todo-list-js-odin/./src/displayController.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _controllers_todoController__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../controllers/todoController */ \"./src/controllers/todoController.js\");\n\n\n/**\n * \n * @returns header components\n */\nconst header = () => {\n    const captureNewProject = (name) => {\n        _controllers_todoController__WEBPACK_IMPORTED_MODULE_0__[\"default\"].createNewProject(name);\n    };\n\n    // Header Components\n    const createProjectsSelectOptions = () => {\n        const projectElementsList = [];\n\n        _controllers_todoController__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getProjects().forEach(project => {\n            const listOption = document.createElement('option');\n            listOption.value = project.getName();\n            listOption.textContent = project.getName();\n            projectElementsList.push(listOption);\n        });\n\n        return projectElementsList;\n    };\n\n    const createProjectSelector = () => {\n        const projectsDiv = document.createElement('div');\n        const projectsListLabel = document.createElement('label');\n        const projectsListDropDown = document.createElement('select');\n\n        projectsListLabel.setAttribute('for', 'projects');\n        projectsListDropDown.setAttribute('id', 'projects');\n        projectsListDropDown.setAttribute('name', 'projectsList');\n\n        projectsListDropDown.replaceChildren(...createProjectsSelectOptions());\n\n        projectsDiv.appendChild(projectsListLabel);\n        projectsDiv.appendChild(projectsListDropDown);\n\n        return projectsDiv;\n    };\n\n    const createAddProjectButton = () => {\n        const addProjectButton = document.createElement('button');\n                \n        addProjectButton.textContent = '+';\n\n        addProjectButton.onclick = (e) => {\n            const projectsListDropDown = e.target.parentElement.querySelector('select');\n            const newProjectName = prompt('What is the name of your new project?');\n            captureNewProject(newProjectName);\n            \n            projectsListDropDown.replaceChildren(...createProjectsSelectOptions());\n        }\n\n        return addProjectButton;\n    };\n\n    const createSettingsButton = () => {\n        const settingsButton = document.createElement('button');\n\n        settingsButton.textContent = '\\u2699';\n        \n        return settingsButton;\n    };\n\n    return {createProjectSelector, createAddProjectButton, createSettingsButton};\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (header);\n\n//# sourceURL=webpack://todo-list-js-odin/./src/components/header.js?");
+
+/***/ }),
+
+/***/ "./src/components/project.js":
+/*!***********************************!*\
+  !*** ./src/components/project.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/**\n * Description: Project object that contains instantiated tasks.\n */\nconst project = (name) => {\n    const containedTasks = [];\n\n    const getName = () => name;\n    const getTasks = () => containedTasks;\n\n    const renameName = (newName) => {name = newName};\n    const addTask = (newTask) => {\n        containedTasks.push(newTask);\n    };\n\n    return {getName, getTasks, renameName}\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (project);\n\n//# sourceURL=webpack://todo-list-js-odin/./src/components/project.js?");
+
+/***/ }),
+
+/***/ "./src/components/task.js":
+/*!********************************!*\
+  !*** ./src/components/task.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/**\n * Description: Task object that will be core of todo list tracking.\n */\n\nconst task = (title) => {\n    let description = '';\n    let dueDate;\n    let status = 'open';\n    let priority;\n\n    const getTitle = () => title;\n    const getDescription = () => description;\n    const getDueDate = () => dueDate;\n    const getStatus = () => status;\n    const getPriority = () => priority;\n\n    const renameTitle = (newTitle) => {title = newTitle};\n    const editDescription = (newDescription) => {description = newDescription};\n    const changeDueDate = (newDueDate) => {dueDate = newDueDate};\n    const changeStatus = (newStatus) => {status = newStatus};\n    const changePriority = (newPriority) => {priority = newPriority};\n\n    return {getTitle, getDescription, getDueDate, getStatus, getPriority,\n    renameTitle, editDescription, changeDueDate, changeStatus, changePriority};\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (task);\n\n//# sourceURL=webpack://todo-list-js-odin/./src/components/task.js?");
+
+/***/ }),
+
+/***/ "./src/controllers/displayController.js":
+/*!**********************************************!*\
+  !*** ./src/controllers/displayController.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _todoController__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todoController */ \"./src/controllers/todoController.js\");\n/* harmony import */ var _components_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/header */ \"./src/components/header.js\");\n\n\n\n/**\n * Description: Display Controller object that can display out to the console.\n */\nconst displayController = (() => {\n\n    const displayTasks = (selectedProject) => {\n        console.log(_todoController__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getTasksFromProject(selectedProject));\n    };\n\n    const captureNewTask = (title) => {\n        _todoController__WEBPACK_IMPORTED_MODULE_0__[\"default\"].createNewTask(title);\n    };\n\n    const loadHeader = () => {\n        const headerDiv = document.createElement('div');\n        const projectViewDiv = document.createElement('div');\n        const settingsDiv = document.createElement('div');\n\n        const newHeaderView = (0,_components_header__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\n        \n        projectViewDiv.appendChild(newHeaderView.createProjectSelector());\n        projectViewDiv.appendChild(newHeaderView.createAddProjectButton());\n        settingsDiv.appendChild(newHeaderView.createSettingsButton());\n\n        headerDiv.appendChild(projectViewDiv);\n        headerDiv.appendChild(settingsDiv);\n\n        return headerDiv;\n    }\n\n    return {\n        displayTasks, captureNewTask, loadHeader,\n    };\n})();\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displayController);\n\n//# sourceURL=webpack://todo-list-js-odin/./src/controllers/displayController.js?");
+
+/***/ }),
+
+/***/ "./src/controllers/todoController.js":
+/*!*******************************************!*\
+  !*** ./src/controllers/todoController.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _components_task__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/task */ \"./src/components/task.js\");\n/* harmony import */ var _components_project__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/project */ \"./src/components/project.js\");\n\n\n\n/**\n * \n */\nconst todoController = (() => {\n    const home = (0,_components_project__WEBPACK_IMPORTED_MODULE_1__[\"default\"])('Home');\n    const projects = [home];\n    let currentProject = home;\n\n    const getProjects = () => projects;\n    const getTasksFromProject = (selectedProject) => selectedProject.getTasks();\n\n    const createNewProject = (name) => {\n        const newProject = (0,_components_project__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(name);\n        projects.push(newProject);\n    };\n\n    const createNewTask = (title) => {\n        const newTask = (0,_components_task__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(title);\n        currentProject.addTask(newTask);\n    }\n\n    return {getProjects, getTasksFromProject, createNewProject, createNewTask};\n\n})();\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (todoController);\n\n//# sourceURL=webpack://todo-list-js-odin/./src/controllers/todoController.js?");
 
 /***/ }),
 
@@ -26,37 +66,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _displayController__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./displayController */ \"./src/displayController.js\");\n\n\nconst content = document.createElement('div');\n\nfunction createHeader() {\n    const header = document.createElement('header');\n    \n    function createProjectsListDiv() {\n        const projectsDiv = document.createElement('div');\n        const projectsListLabel = document.createElement('label');\n        const projectsListDropDown = document.createElement('select');\n        const addProjectButton = document.createElement('button');\n        const projectOptions = _displayController__WEBPACK_IMPORTED_MODULE_0__[\"default\"].displayProjectsSelectOptions();\n        \n        projectsListLabel.setAttribute('for', 'projects');\n        projectsListDropDown.setAttribute('id', 'projects');\n        projectsListDropDown.setAttribute('name', 'projectsList');\n\n        projectsListDropDown.replaceChildren(...projectOptions);\n        \n        addProjectButton.textContent = '+';\n\n        addProjectButton.onclick = () => {\n            const newProjectName = prompt('What is the name of your new project?');\n            _displayController__WEBPACK_IMPORTED_MODULE_0__[\"default\"].captureNewProject(newProjectName);\n            \n            projectsListDropDown.replaceChildren(...projectOptions);\n        }\n        \n        projectsDiv.appendChild(projectsListDropDown);\n        projectsDiv.appendChild(addProjectButton);\n\n        return projectsDiv;\n    }\n\n    function createSettingsButtonDiv() {\n        const settingsDiv = document.createElement('div');\n        const settingsButton = document.createElement('button');\n\n        settingsButton.textContent = '\\u2699';\n\n        settingsDiv.appendChild(settingsButton);\n        \n        return settingsDiv;\n    }\n\n    header.appendChild(createProjectsListDiv());\n    header.appendChild(createSettingsButtonDiv());\n\n    return header;\n};\n\ndocument.body.appendChild(content);\ncontent.appendChild(createHeader());\n\n//# sourceURL=webpack://todo-list-js-odin/./src/index.js?");
-
-/***/ }),
-
-/***/ "./src/project.js":
-/*!************************!*\
-  !*** ./src/project.js ***!
-  \************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/**\n * Description: Project object that contains instantiated tasks.\n */\nconst project = (name) => {\n    const containedTasks = [];\n\n    const getName = () => name;\n    const getTasks = () => containedTasks;\n\n    const renameName = (newName) => {name = newName};\n    const addTask = (newTask) => {\n        containedTasks.push(newTask);\n    };\n\n    return {getName, getTasks, renameName}\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (project);\n\n//# sourceURL=webpack://todo-list-js-odin/./src/project.js?");
-
-/***/ }),
-
-/***/ "./src/task.js":
-/*!*********************!*\
-  !*** ./src/task.js ***!
-  \*********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/**\n * Description: Task object that will be core of todo list tracking.\n */\n\nconst task = (title) => {\n    let description = '';\n    let dueDate;\n    let status = 'open';\n    let priority;\n\n    const getTitle = () => title;\n    const getDescription = () => description;\n    const getDueDate = () => dueDate;\n    const getStatus = () => status;\n    const getPriority = () => priority;\n\n    const renameTitle = (newTitle) => {title = newTitle};\n    const editDescription = (newDescription) => {description = newDescription};\n    const changeDueDate = (newDueDate) => {dueDate = newDueDate};\n    const changeStatus = (newStatus) => {status = newStatus};\n    const changePriority = (newPriority) => {priority = newPriority};\n\n    return {getTitle, getDescription, getDueDate, getStatus, getPriority,\n    renameTitle, editDescription, changeDueDate, changeStatus, changePriority};\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (task);\n\n//# sourceURL=webpack://todo-list-js-odin/./src/task.js?");
-
-/***/ }),
-
-/***/ "./src/todoController.js":
-/*!*******************************!*\
-  !*** ./src/todoController.js ***!
-  \*******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./task */ \"./src/task.js\");\n/* harmony import */ var _project__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./project */ \"./src/project.js\");\n\n\n\n/**\n * \n */\nconst todoController = (() => {\n    const home = (0,_project__WEBPACK_IMPORTED_MODULE_1__[\"default\"])('Home');\n    const projects = [home];\n    let currentProject = home;\n\n    const getProjects = () => projects;\n    const getTasksFromProject = (selectedProject) => selectedProject.getTasks();\n\n    const createNewProject = (name) => {\n        const newProject = (0,_project__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(name);\n        projects.push(newProject);\n    };\n\n    const createNewTask = (title) => {\n        const newTask = (0,_task__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(title);\n        currentProject.addTask(newTask);\n    }\n\n    return {getProjects, getTasksFromProject, createNewProject, createNewTask};\n\n})();\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (todoController);\n\n//# sourceURL=webpack://todo-list-js-odin/./src/todoController.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _controllers_displayController__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./controllers/displayController */ \"./src/controllers/displayController.js\");\n\n\nconst content = document.createElement('div');\n\ndocument.body.appendChild(content);\ncontent.appendChild(_controllers_displayController__WEBPACK_IMPORTED_MODULE_0__[\"default\"].loadHeader());\n\n//# sourceURL=webpack://todo-list-js-odin/./src/index.js?");
 
 /***/ })
 

@@ -1,5 +1,5 @@
-import task from './task';
-import project from './project';
+import task from '../components/task';
+import project from '../components/project';
 
 /**
  * 
