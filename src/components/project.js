@@ -12,7 +12,7 @@ const project = (name) => {
         containedTasks.push(newTask);
     };
 
-    return {getName, getTasks, renameName}
+    return {getName, getTasks, renameName, addTask}
 };
 
 export default project;

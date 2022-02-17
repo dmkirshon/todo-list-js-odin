@@ -10,6 +10,7 @@ const todoController = (() => {
     let currentProject = home;
 
     const getProjects = () => projects;
+    const getCurrentProject = () => currentProject;
     const getTasksFromProject = (selectedProject) => selectedProject.getTasks();
 
     const createNewProject = (name) => {
@@ -22,7 +23,7 @@ const todoController = (() => {
         currentProject.addTask(newTask);
     }
 
-    return {getProjects, getTasksFromProject, createNewProject, createNewTask};
+    return {getProjects, getCurrentProject, getTasksFromProject, createNewProject, createNewTask};
 
 })();
 

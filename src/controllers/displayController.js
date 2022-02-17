@@ -1,5 +1,5 @@
-import todoController from './todoController';
 import header from '../layouts/header';
+import projectPage from '../layouts/projectPage';
 
 /**
  * Description: Display Controller object that can display out to the console.
@@ -31,8 +31,22 @@ const displayController = (() => {
         return headerDiv;
     }
 
+    const loadProjectPage = () => {
+        const projectPageDiv = document.createElement('div');
+        const taskViewDiv = document.createElement('div');
+
+        const newProjectPage = projectPage();
+
+        taskViewDiv.appendChild(newProjectPage.displayProjectTaskList());
+        taskViewDiv.appendChild(newProjectPage.displayAddTask());
+
+        projectPageDiv.appendChild(taskViewDiv);
+
+        return projectPageDiv;
+    };
+
     return {
-        displayTasks, captureNewTask, loadHeader,
+        displayTasks, captureNewTask, loadHeader, loadProjectPage,
     };
 })();
 
