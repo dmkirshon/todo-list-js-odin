@@ -5,11 +5,7 @@ import todoController from '../controllers/todoController';
  * @returns header components
  */
 const header = () => {
-    const captureNewProject = (name) => {
-        todoController.createNewProject(name);
-    };
 
-    // Header Components
     const createProjectsSelectOptions = () => {
         const projectElementsList = [];
 
@@ -48,9 +44,13 @@ const header = () => {
         addProjectButton.onclick = (e) => {
             const projectsListDropDown = e.target.parentElement.querySelector('select');
             const newProjectName = prompt('What is the name of your new project?');
-            captureNewProject(newProjectName);
             
-            projectsListDropDown.replaceChildren(...createProjectsSelectOptions());
+            if(newProjectName) {
+                todoController.createNewProject(newTaskTitle);
+                projectsListDropDown.replaceChildren(...createProjectsSelectOptions());
+            } else {
+                alert('Enter valid project name!');
+            }
         }
 
         return addProjectButton;
