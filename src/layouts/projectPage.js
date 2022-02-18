@@ -1,8 +1,6 @@
 import todoController from "../controllers/todoController";
 
 const projectPage = () => {
-    const currentProject = todoController.getCurrentProject()
-    const taskList = todoController.getTasksFromProject(currentProject);
 
     const createCheckbox = (task) => {
         const taskTitle = task.getTitle();
@@ -35,7 +33,9 @@ const projectPage = () => {
     };
 
     const createProjectTaskItems = () => {
-        const projectTaskItems = []
+        const projectTaskItems = [];
+        const currentProject = todoController.getCurrentProject()
+        const taskList = todoController.getTasksFromProject(currentProject);
 
         taskList.forEach(task => {
             const taskListing = createCheckbox(task);

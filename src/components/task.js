@@ -5,7 +5,7 @@ const uniqueIdentifier = (() => {
     let uniqueIdentifier = 0;
 
     const nextValue = () => {
-        uniqueIdentifier++;
+        return ++uniqueIdentifier;
     };
 
     return {nextValue};

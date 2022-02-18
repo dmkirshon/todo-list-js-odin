@@ -12,6 +12,11 @@ const todoController = (() => {
     const getProjects = () => projects;
     const getCurrentProject = () => currentProject;
     const getTasksFromProject = (selectedProject) => selectedProject.getTasks();
+    const getProjectByID = (projectID) => {
+        return projects.filter((project) => {
+            return projectID == project.getProjectID()
+    }
+    )[0];};
 
     const createNewProject = (name) => {
         const newProject = project(name);
@@ -23,7 +28,12 @@ const todoController = (() => {
         currentProject.addTask(newTask);
     }
 
-    return {getProjects, getCurrentProject, getTasksFromProject, createNewProject, createNewTask};
+    const setCurrentProject = (nextProject) => {
+        currentProject = nextProject;
+    };
+
+    return {getProjects, getCurrentProject, getTasksFromProject, createNewProject, 
+        createNewTask, setCurrentProject, getProjectByID};
 
 })();
 
