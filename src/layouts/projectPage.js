@@ -60,7 +60,7 @@ const projectPage = () => {
     const displayAddTask = () => {
         const addTaskButton = document.createElement('button');
         
-        addTaskButton.textContent = '\u002B'
+        addTaskButton.textContent = '\u002B new task'
 
         addTaskButton.onclick = (e) => {
             const projectTaskList = e.target.parentElement.querySelector('div');
