@@ -10,16 +10,26 @@ const projectPage = () => {
 
         const taskCheckBoxDiv = document.createElement('div');
         const taskCheckbox = document.createElement('input');
-        const taskCheckboxLabel = document.createElement('label');
+        const taskCheckboxText = document.createElement('input');
 
         taskCheckbox.setAttribute('type', `checkbox`);
         taskCheckbox.setAttribute('id', `checkbox${taskID}`);
         taskCheckbox.setAttribute('name', `checkbox${taskID}`);
-        taskCheckboxLabel.setAttribute('for', `checkbox${taskID}`);
-        taskCheckboxLabel.textContent = taskTitle;
+        taskCheckboxText.setAttribute('type', `text`);
+        taskCheckboxText.setAttribute('max', `text`);
+        taskCheckboxText.value = taskTitle;
+        taskCheckboxText.onchange = (e) => {
+            const newTitle = e.target.value;
+            if (newTitle && !(/^\s/.test(newTitle))) {
+                task.renameTitle(newTitle);
+            } else {
+                e.target.value = task.getTitle();
+            }
+            
+        };
 
         taskCheckBoxDiv.appendChild(taskCheckbox);
-        taskCheckBoxDiv.appendChild(taskCheckboxLabel);
+        taskCheckBoxDiv.appendChild(taskCheckboxText);
 
         return taskCheckBoxDiv;
     };
@@ -55,7 +65,7 @@ const projectPage = () => {
         addTaskButton.onclick = (e) => {
             const projectTaskList = e.target.parentElement.querySelector('div');
             const newTaskTitle = prompt('What is the name of your new task?');
-            if(newTaskTitle) {
+            if(newTaskTitle && !(/^\s/.test(newTaskTitle))) {
                 todoController.createNewTask(newTaskTitle);
             
                 projectTaskList.replaceChildren(...createProjectTaskItems());
