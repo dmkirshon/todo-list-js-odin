@@ -58,10 +58,17 @@ const header = () => {
         currentProjectName.setAttribute('type', 'text');
         currentProjectName.className = 'header-project-name';
         currentProjectName.value = currentProject.getName();
+        currentProjectName.setAttribute('data-project-id', currentProject.getProjectID());
         currentProjectName.onchange = (e) => {
             const newName = e.target.value;
+            const projectsListDropDown = document.getElementById('projects');
+            const projectID = e.target.getAttribute('data-project-id');
+            const optionName = projectsListDropDown.querySelector(`[data-project-id="${projectID}"]`);
+
             if (newName && !(/^\s/.test(newName))) {
-                currentProject.renameName(newName);
+                todoController.getCurrentProject().renameName(newName);
+                optionName.textContent = newName;
+                optionName.value = newName;
             } else {
                 e.target.value = currentProject.getName();
             }
@@ -72,11 +79,13 @@ const header = () => {
 
     const updateCurrentProjectDisplayName = (selectElement) => {
         const projectNameDisplay = document.querySelector('.header-project-name');
+        const projectID = selectElement.selectedOptions[0].getAttribute('data-project-id')
         
         todoController.setCurrentProject(
             todoController.getProjectByID(
-            selectElement.selectedOptions[0].getAttribute('data-project-id')));
+           projectID));
 
+        projectNameDisplay.setAttribute('data-project-id', projectID);
         projectNameDisplay.value = selectElement.value;
     }
 

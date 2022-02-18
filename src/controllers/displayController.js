@@ -23,13 +23,13 @@ const displayController = (() => {
         const projectNameDiv = document.createElement('div');
         const settingsDiv = document.createElement('div');
 
-        const currentProjectNameDisplayed = newHeaderView.displayCurrentProjectName();
         const projectSelector = newHeaderView.createProjectSelector();
+        
         projectSelector.onchange = updateProjectView;
 
         projectViewDiv.appendChild(projectSelector);
         projectViewDiv.appendChild(newHeaderView.createAddProjectButton());
-        projectNameDiv.appendChild(currentProjectNameDisplayed);
+        projectNameDiv.appendChild(newHeaderView.displayCurrentProjectName());
         settingsDiv.appendChild(newHeaderView.createSettingsButton());
 
         headerDiv.appendChild(projectViewDiv);
