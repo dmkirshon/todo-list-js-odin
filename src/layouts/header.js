@@ -70,7 +70,7 @@ const header = () => {
                 optionName.textContent = newName;
                 optionName.value = newName;
             } else {
-                e.target.value = currentProject.getName();
+                e.target.value = todoController.getCurrentProject().getName();
             }
         };
 
