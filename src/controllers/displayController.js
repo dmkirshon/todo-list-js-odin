@@ -32,6 +32,11 @@ const displayController = (() => {
         projectNameDiv.appendChild(newHeaderView.displayCurrentProjectName());
         settingsDiv.appendChild(newHeaderView.createSettingsButton());
 
+        headerDiv.className = 'header';
+        projectViewDiv.className = 'header-project-view-div';
+        projectNameDiv.className = 'header-project-name-div';
+        settingsDiv.className = 'header-settings-div';
+
         headerDiv.appendChild(projectViewDiv);
         headerDiv.appendChild(projectNameDiv);
         headerDiv.appendChild(settingsDiv);

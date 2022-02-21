@@ -25,6 +25,7 @@ const header = () => {
 
         projectsListDropDown.setAttribute('id', 'projects');
         projectsListDropDown.setAttribute('name', 'projectsList');
+        projectsListDropDown.className = 'header-project-selector';
 
         projectsListDropDown.replaceChildren(...createProjectsSelectOptions());
 
@@ -35,6 +36,7 @@ const header = () => {
         const addProjectButton = document.createElement('button');
                 
         addProjectButton.textContent = '+';
+        addProjectButton.className = 'header-project-add-button';
 
         addProjectButton.onclick = (e) => {
             const projectsListDropDown = e.target.parentElement.querySelector('select');
@@ -93,6 +95,7 @@ const header = () => {
         const settingsButton = document.createElement('button');
 
         settingsButton.textContent = '\u2699';
+        settingsButton.className = 'header-settings-button';
         
         return settingsButton;
     };

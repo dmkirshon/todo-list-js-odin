@@ -1,0 +1,59 @@
+/* General Style */
+html {
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+*, 
+*:before,
+*:after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Component Style */
+
+.header-project-selector {
+
+}
+
+.header-project-add-button {
+    
+}
+
+.header-project-name {
+
+}
+
+.header-settings-button {
+
+}
+
+/* Header Organization Style */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    background-color: teal;
+}
+
+.header-project-view-div {
+    display: flex;
+    padding: 1em;
+    flex: 1;
+}
+
+.header-project-name-div {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: .5em;
+}
+
+.header-settings-div {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1em;
+    flex: 1;
+}
