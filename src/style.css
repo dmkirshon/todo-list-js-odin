@@ -30,7 +30,12 @@ html {
 }
 
 .header-project-name {
-
+    text-align: center;
+    font-size: x-large;
+    color: white;
+    background-color: teal;
+    font-weight: bolder;
+    border: none;
 }
 
 .header-settings-button {
@@ -56,7 +61,6 @@ html {
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    padding-bottom: .5em;
 }
 
 .header-settings-div {
