@@ -54,6 +54,7 @@ const displayController = (() => {
         const projectPageDiv = document.createElement('div');
         projectPageDiv.className = 'project-page';
         const taskViewDiv = document.createElement('div');
+        taskViewDiv.className = 'project-page-task-view-div';
 
         taskViewDiv.appendChild(newProjectPage.displayProjectTaskList());
         taskViewDiv.appendChild(newProjectPage.displayAddTask());
@@ -66,6 +67,8 @@ const displayController = (() => {
     const changeProjectPage = () => {
         const projectPage = document.querySelector('.project-page');
         const taskViewDiv = document.createElement('div');
+
+        taskViewDiv.className = 'project-page-task-view-div';
         
         taskViewDiv.appendChild(newProjectPage.displayProjectTaskList());
         taskViewDiv.appendChild(newProjectPage.displayAddTask());

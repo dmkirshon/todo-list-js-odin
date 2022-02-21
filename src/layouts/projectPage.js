@@ -13,9 +13,13 @@ const projectPage = () => {
         taskCheckbox.setAttribute('type', `checkbox`);
         taskCheckbox.setAttribute('id', `checkbox${taskID}`);
         taskCheckbox.setAttribute('name', `checkbox${taskID}`);
+        taskCheckbox.className = 'project-task-checkbox';
+
         taskCheckboxText.setAttribute('type', `text`);
         taskCheckboxText.setAttribute('max', `text`);
         taskCheckboxText.value = taskTitle;
+        taskCheckboxText.className = 'project-task-checkbox-text';
+
         taskCheckboxText.onchange = (e) => {
             const newTitle = e.target.value;
             if (newTitle && !(/^\s/.test(newTitle))) {
@@ -39,6 +43,7 @@ const projectPage = () => {
 
         taskList.forEach(task => {
             const taskListing = createCheckbox(task);
+            taskListing.className = 'project-task-listing';
             projectTaskItems.push(taskListing);
         });
 
@@ -48,6 +53,7 @@ const projectPage = () => {
     const displayProjectTaskList = () => {
         const projectTaskList = document.createElement('div');
 
+        projectTaskList.className = 'project-task-list';
         projectTaskList.replaceChildren(...createProjectTaskItems());
 
         return projectTaskList;
@@ -60,7 +66,8 @@ const projectPage = () => {
     const displayAddTask = () => {
         const addTaskButton = document.createElement('button');
         
-        addTaskButton.textContent = '\u002B new task'
+        addTaskButton.textContent = '\u002B new task';
+        addTaskButton.className = 'project-add-task-button';
 
         addTaskButton.onclick = (e) => {
             const projectTaskList = e.target.parentElement.querySelector('div');

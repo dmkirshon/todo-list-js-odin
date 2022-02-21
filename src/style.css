@@ -12,6 +12,13 @@ html {
     padding: 0;
 }
 
+.content {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 /* Header Component Style */
 
 .header-project-selector {
@@ -36,6 +43,7 @@ html {
     display: flex;
     justify-content: space-between;
     background-color: teal;
+    flex: 0;
 }
 
 .header-project-view-div {
@@ -56,4 +64,42 @@ html {
     justify-content: flex-end;
     padding: 1em;
     flex: 1;
+}
+
+/* Project Page Component Style */
+
+.project-add-task-button {
+    margin: 1em;
+}
+
+.project-task-list {
+}
+
+.project-task-listing {
+
+}
+
+.project-task-checkbox {
+    margin: 1em;
+}
+
+.project-task-checkbox-text {
+    border: none;
+
+}
+
+/* Project Page Organization Style */
+
+.project-page {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(95, 158, 160, 0.436);
+    flex: 1;
+}
+
+.project-page-task-view-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
 }
